@@ -1,4 +1,4 @@
-import { Play, ArrowUpRight, Instagram, Youtube } from "lucide-react";
+import { Play, Instagram, Youtube } from "lucide-react";
 import type { WorkItem } from "@/data/portfolio";
 
 const platformIcon = {
@@ -6,16 +6,23 @@ const platformIcon = {
   Instagram: Instagram,
 } as const;
 
-export function WorkCard({ item, index }: { item: WorkItem; index: number }) {
+export function WorkCard({
+  item,
+  index,
+  onPlay,
+}: {
+  item: WorkItem;
+  index: number;
+  onPlay: (item: WorkItem) => void;
+}) {
   const Icon = platformIcon[item.platform];
   const rotate = index % 2 === 0 ? "-1.5deg" : "1.5deg";
 
   return (
-    <a
-      href={item.url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group relative block overflow-hidden rounded-2xl border-2 border-ink bg-ink shadow-card transition-all hover:-translate-y-1 hover:shadow-cardHover"
+    <button
+      type="button"
+      onClick={() => onPlay(item)}
+      className="group relative block w-full overflow-hidden rounded-2xl border-2 border-ink bg-ink text-left shadow-card transition-all hover:-translate-y-1 hover:shadow-cardHover"
       style={{ transform: `rotate(${rotate})` }}
     >
       <div className="relative flex aspect-[9/12] items-center justify-center bg-gradient-to-br from-ink via-ink/90 to-ink/70 sm:aspect-[9/13]">
@@ -39,8 +46,8 @@ export function WorkCard({ item, index }: { item: WorkItem; index: number }) {
           <p className="font-display text-sm uppercase tracking-tight text-ink">{item.title}</p>
           <p className="font-sans text-xs text-ink/60">{item.type}</p>
         </div>
-        <ArrowUpRight className="h-4 w-4 shrink-0 text-ink transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        <Play className="h-4 w-4 shrink-0 text-ink transition-transform group-hover:scale-110" />
       </div>
-    </a>
+    </button>
   );
 }

@@ -2,13 +2,15 @@
 
 import { useMemo, useState } from "react";
 import { cn } from "@/lib/utils";
-import { workFilters, workItems, type WorkCategory } from "@/data/portfolio";
+import { workFilters, workItems, type WorkCategory, type WorkItem } from "@/data/portfolio";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/ui/reveal";
 import { WorkCard } from "@/components/work-card";
+import { VideoModal } from "@/components/video-modal";
 
 export function Work() {
   const [filter, setFilter] = useState<"ALL" | WorkCategory>("ALL");
+  const [activeItem, setActiveItem] = useState<WorkItem | null>(null);
 
   const filtered = useMemo(
     () => (filter === "ALL" ? workItems : workItems.filter((w) => w.category === filter)),
@@ -42,7 +44,7 @@ export function Work() {
         <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 md:gap-6">
           {filtered.map((item, i) => (
             <Reveal key={item.id} delay={(i % 4) * 80}>
-              <WorkCard item={item} index={i} />
+              <WorkCard item={item} index={i} onPlay={setActiveItem} />
             </Reveal>
           ))}
         </div>
@@ -53,6 +55,10 @@ export function Work() {
           </p>
         )}
       </div>
+
+      {activeItem && (
+        <VideoModal item={activeItem} onClose={() => setActiveItem(null)} />
+      )}
     </section>
   );
 }
