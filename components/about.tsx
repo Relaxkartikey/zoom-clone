@@ -1,4 +1,3 @@
-import { Clapperboard } from "lucide-react";
 import { profile, coreSkills } from "@/data/portfolio";
 import { Reveal } from "@/components/ui/reveal";
 import { Tag } from "@/components/ui/tag";
@@ -17,8 +16,13 @@ export function About() {
         <div className="mt-12 grid gap-10 md:grid-cols-[220px_1fr] md:items-start">
           <Reveal delay={100} className="mx-auto md:mx-0">
             <div className="relative w-fit rotate-[-3deg] border-2 border-ink bg-white p-3 shadow-card">
-              <div className="flex h-48 w-48 items-center justify-center bg-paper text-ink/40">
-                <Clapperboard className="h-16 w-16" strokeWidth={1.5} />
+              <div className="h-48 w-48 overflow-hidden bg-paper">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={profile.photoUrl}
+                  alt={profile.name}
+                  className="h-full w-full object-cover"
+                />
               </div>
               <p className="mt-2 text-center font-hand text-lg text-ink/70">that&apos;s me</p>
             </div>

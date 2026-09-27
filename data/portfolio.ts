@@ -12,6 +12,7 @@ export const profile = {
     "Arish Qadri is a Social Media Manager, Video Editor and Cinematographer with 1 year of hands-on experience creating digital content for brands, businesses and personal brands. His work focuses on social media management, short-form video editing, content planning and visual storytelling — with an emphasis on creating content that fits the brand identity and connects with its audience.",
   approach:
     "Arish combines creative thinking, visual storytelling and an understanding of social media to develop content that is relevant to the audience and aligned with the brand's identity.",
+  photoUrl: "https://i.ibb.co/sJ19j9P2/2a9ba12c-6aa0-4469-84c2-7306c61b768f.jpg",
 };
 
 export const heroStickers = [
